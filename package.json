@@ -4,7 +4,7 @@
   "description": "Local Serverless Development environment for AWS",
   "main": "dist/index.js",
   "bin": {
-    "diko": "cli.js"
+    "lserve": "cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
