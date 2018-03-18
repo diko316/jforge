@@ -1,0 +1,37 @@
+{
+  "name": "serverless-local-dev",
+  "version": "0.0.1",
+  "description": "Local Serverless Development environment for AWS",
+  "main": "dist/index.js",
+  "bin": {
+    "diko": "cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://diko316@github.com/diko316/serverless-local-dev.git"
+  },
+  "keywords": [
+    "Serverless",
+    "AWS",
+    "Lambda",
+    "DynamoDB",
+    "SQS",
+    "SNS"
+  ],
+  "author": "Diko Tech Slave",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diko316/serverless-local-dev/issues"
+  },
+  "homepage": "https://github.com/diko316/serverless-local-dev#readme",
+  "devDependencies": {
+    "eslint": "^4.19.0",
+    "eslint-plugin-es5": "^1.2.0"
+  },
+  "dependencies": {
+    "libcore": "^0.3.8"
+  }
+}
