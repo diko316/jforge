@@ -1,7 +1,7 @@
 {
   "name": "serverless-local-dev",
   "version": "0.0.1",
-  "description": "Local Serverless Development environment for AWS",
+  "description": "Local Development Environment Commander",
   "main": "dist/index.js",
   "bin": {
     "lserve": "cli.js"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://diko316@github.com/diko316/serverless-local-dev.git"
+    "url": "git+https://diko316@github.com/diko316/commando.git"
   },
   "keywords": [
     "Serverless",
@@ -24,9 +24,9 @@
   "author": "Diko Tech Slave",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diko316/serverless-local-dev/issues"
+    "url": "https://github.com/diko316/commando/issues"
   },
-  "homepage": "https://github.com/diko316/serverless-local-dev#readme",
+  "homepage": "https://github.com/diko316/commando#readme",
   "devDependencies": {
     "eslint": "^4.19.0",
     "eslint-plugin-es5": "^1.2.0"

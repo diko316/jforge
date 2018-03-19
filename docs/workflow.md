@@ -1,20 +1,20 @@
 # Workflow
 
 ## Configure
-Create `lserve` configuration in current directory.
+Create `commando` configuration in current directory.
 
 ```shell
-lserve init
+commando init
 ```
-1. Create .lserve directory
-2. Setup workflows `.lserve/workflow.json` file and `.lserve/workflow` directory
-3. Install workflow plugins and middlewares.
+1. Create .commando directory
+2. Add .gitignore to .commando
+3. Ask workflows to install
 
 
 ## Setup
 
 ```shell
-lserve setup
+commando setup
 ```
 
 ## Provision
