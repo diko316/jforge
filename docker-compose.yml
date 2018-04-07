@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    image: commando-app
+    container_name: "commando-app"
+    hostname: commando-app
+
+    volumes:
+     - .:/opt/app-source:ro
+    networks:
+     - commando-net
+
+networks:
+  commando-net:
+      driver: bridge
