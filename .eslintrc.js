@@ -11,6 +11,8 @@ module.exports = {
         "no-console": 0
     },
     "globals": {
-        "Promise": true
+        "Promise": true,
+        "describe": true,
+        "it": true
     }
 };

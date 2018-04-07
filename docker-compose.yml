@@ -5,8 +5,6 @@ services:
     build: .
     image: commando-app
     container_name: "commando-app"
-    hostname: commando-app
-
     volumes:
      - .:/opt/app-source:ro
     networks:
