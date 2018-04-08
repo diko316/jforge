@@ -1,11 +1,10 @@
 {
-  "name": "commando",
+  "name": "jforge",
   "version": "0.0.1",
   "description": "Local Development Environment Commander",
   "main": "lib/index.js",
   "bin": {
-    "commando": "command-line.js",
-    "jdo": "command-line.js"
+    "jforge": "command-line.js"
   },
   "scripts": {
     "test": "mocha lib/**/*.spec.js",
@@ -15,19 +14,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://diko316@github.com/diko316/commando.git"
+    "url": "git+https://diko316@github.com/diko316/jforge.git"
   },
   "keywords": [
-    "Commando",
+    "Forge",
     "CLI",
-    "Provisioning"
+    "Provisioning",
+    "JForge"
   ],
   "author": "Diko Tech Slave",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diko316/commando/issues"
+    "url": "https://github.com/diko316/jforge/issues"
   },
-  "homepage": "https://github.com/diko316/commando#readme",
+  "homepage": "https://github.com/diko316/jforge#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
