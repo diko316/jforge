@@ -2,15 +2,16 @@
   "name": "commando",
   "version": "0.0.1",
   "description": "Local Development Environment Commander",
-  "main": "index.js",
+  "main": "lib/index.js",
   "bin": {
-    "commando": "cli.js",
-    "cmd": "cli.js"
+    "commando": "command-line.js",
+    "jdo": "command-line.js"
   },
   "scripts": {
     "test": "mocha lib/**/*.spec.js",
     "tdd": "mocha --watch lib/**/*.spec.js",
-    "lint": "eslint cli.js 'lib/**/*.js'"
+    "lint": "eslint cli.js 'lib/**/*.js'",
+    "local": "bin/dev-install.sh"
   },
   "repository": {
     "type": "git",
