@@ -1,7 +1,7 @@
 {
   "name": "jforge",
   "version": "0.0.1",
-  "description": "Local Development Environment Commander",
+  "description": "JForge Provisioning Tool",
   "main": "lib/index.js",
   "bin": {
     "jforge": "command-line.js"
