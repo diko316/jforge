@@ -5,12 +5,11 @@
 var COMMANDO = require('./lib/index');
 var RUNNER = require('./lib/runner');
 var DOCS = require('./lib/docs');
+var CONFIG = require('./lib/config');
 var command;
 
-
-require('./lib/jforge-init');
-require('./lib/jforge-provide');
-require('./lib/jforge-help');
+require('jforge-init');
+require('jforge-help');
 
 
 command = RUNNER.extractCliOptions();
@@ -19,18 +18,30 @@ if (command) {
 
     // go through initialize/configure process
     if (command === 'init') {
+
+        // create initial directory
+        if (!CONFIG.has()) {
+            CONFIG.push();
+        }
+
         RUNNER.runCommand('init');
+
     }
     // inspect configuration
     else {
-        console.log('command ', command);
+        CONFIG.findCwd();
 
-        // run config
-        RUNNER.runCommand('provide')
+        // pull and run command
+        if (CONFIG.has()) {
+            CONFIG.pull();
 
-            .then(function () {
-                return RUNNER.runCommand(command);
-            });
+            RUNNER.runCommand(command);
+
+        }
+        // must run initialize
+        else {
+            DOCS.show('run-init');
+        }
     }
 }
 // show help

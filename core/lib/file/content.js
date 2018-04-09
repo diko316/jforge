@@ -1,6 +1,6 @@
 'use strict';
 
-var LIBCORE = require('LIBCORE');
+var LIBCORE = require('libcore');
 var FS = require('fs');
 var NPATH = require('path');
 var EXIST = require('./exist');
@@ -47,13 +47,12 @@ function writeFileContent(path, data) {
         directory = NPATH.dirname(path);
 
         // create directory only if it does not exist
-        if (exist.is(directory, 'not-directory not-file')) {
+        if (!exist.exist(directory)) {
             directory = mkdirp(directory);
         }
 
         if (directory &&
-            exist.is(directory, 'directory writable') &&
-            exist.is(path, 'file writable')
+            exist.is(directory, 'directory writable')
         ) {
             try {
                 FS.writeFileSync(path,
@@ -65,8 +64,11 @@ function writeFileContent(path, data) {
                                 });
                 return path;
             }
-            catch (e) {}
+            catch (e) {
+                console.log('error: ', e);
+            }
         }
+        
     }
 
     return null;

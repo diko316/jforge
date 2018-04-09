@@ -36,6 +36,8 @@
   },
   "dependencies": {
     "api-npm": "^1.0.0",
-    "libcore": "^0.3.8"
+    "libcore": "^0.3.8",
+    "jforge-init": "file:./task/init",
+    "jforge-help": "file:./task/help"
   }
 }

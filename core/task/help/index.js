@@ -1,9 +1,9 @@
 'use strict';
 
 
-var commando = require('../index');
+var jforge = require('../../lib');
 var runner = require('./runner');
 
 
-commando.register('help')
+jforge.register('help')
     .runner(runner);

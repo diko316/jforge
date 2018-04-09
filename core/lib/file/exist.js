@@ -71,6 +71,7 @@ function is(file, isList) {
     var c, length, isValue, compare;
 
     file = exist(file);
+    
     if (file) {
         if (arguments.length < 2) {
             return true;
@@ -116,6 +117,7 @@ function is(file, isList) {
                 case 'not-dir':
                 case 'nd':
                         compare = !file.isDirectory;
+                        console.log('not directory ', compare);
                         break;
 
                 case 'file':

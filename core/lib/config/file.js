@@ -8,69 +8,76 @@ var string = LIBCORE.string;
 var object = LIBCORE.object;
 var CONFIG_ROOT_DIRECTORY = '.jforge';
 var CONFIG_FILE = 'config.json';
+var ROOT_DIRECTORY = process.cwd();
+var ORIGINAL_DIRECTORY = ROOT_DIRECTORY;
 
 function findDirectory() {
-    return FILE.tracePath(
+    var directory = FILE.tracePath(
                         CONFIG_ROOT_DIRECTORY,
-                        process.cwd(),
+                        currentDirectory(),
                         'directory readable writable'
-        );
+                    );
+
+    if (directory) {
+        return PATH.dirname(directory);
+    }
+
+    return false;
 }
 
-function createConfig(rootPath, data) {
-    if (string(rootPath)) {
+function findChangeDirectory() {
+    var directory = findDirectory();
 
+    if (directory) {
+        return currentDirectory(directory);
     }
-    if (!object(data)) {
-        data = {};
-    }
 
-    try {
-        data = JSON.stringify(data);
-
-        return FILE.writeFileContent(
-                    PATH.join(
-                        rootPath,
-                        CONFIG_ROOT_DIRECTORY,
-                        CONFIG_FILE
-                    ),
-                    data
-                );
-    }
-    catch (e) { }
-
-    return null;
+    return ROOT_DIRECTORY;
 }
 
-function hasConfigFile(inCurrentDirectory) {
+function restoreDirectory() {
+    return currentDirectory(ORIGINAL_DIRECTORY);
+}
+
+function currentDirectory(directory) {
+    var old = ROOT_DIRECTORY;
+    var file = FILE;
+
+    if (string(directory)) {
+        directory = file.fullPath(directory);
+
+        if (file.is(directory, 'directory readable writable')) {
+            if (old !== directory) {
+                ROOT_DIRECTORY = directory;
+                process.chdir(directory);
+            }
+
+            return directory;
+        }
+    }
+
+    return ROOT_DIRECTORY;
+}
+
+function hasConfigFile() {
     var is = FILE.is;
 
     // inspect if has config file in current directory
-    var directory = inCurrentDirectory === true ?
-                        PATH.join(
-                            process.cwd(),
-                            CONFIG_ROOT_DIRECTORY
-                        ) :
-                        findDirectory();
-    var fullPath = directory ? PATH.join(directory, CONFIG_FILE ) : null;
+    var fullPath = PATH.join(
+                            currentDirectory(),
+                            CONFIG_ROOT_DIRECTORY,
+                            CONFIG_FILE
+                        );
     
-    return fullPath && FILE.is(fullPath, 'file readable writable') ?
-                        fullPath : false;
+    return FILE.is(fullPath, 'file readable writable') ? fullPath : false;
 }
 
-function getContent(inCurrentDirectory) {
-    var directory = inCurrentDirectory === true ?
-                            PATH.join(
-                                process.cwd(),
-                                CONFIG_ROOT_DIRECTORY
-                            ) :
-                            findDirectory();
+function pullContent() {
+    var path = hasConfigFile();
     var content;
 
-    if (directory) {
-        content = FILE.getFileContent(
-                    PATH.join(directory, CONFIG_FILE)
-        );
+    if (path) {
+        content = FILE.getFileContent(path);
 
         if (string(content)) {
             try {
@@ -83,30 +90,35 @@ function getContent(inCurrentDirectory) {
     return null;
 }
 
-function createContent(data, inCurrentDirectory) {
-    // inspect if has config file in current directory
-    var directory = inCurrentDirectory === true ?
-                        PATH.join(
-                            process.cwd(),
-                            CONFIG_ROOT_DIRECTORY
-                        ) :
-                        findDirectory();
+function pushContent(data) {
+    if (!object(data)) {
+        data = {};
+    }
 
-    return createConfig(directory, data);
-}
+    try {
+        data = JSON.stringify(data, null, 4);
 
-function push(data) {
-    return createContent(data, false);
-}
+        return FILE.writeFileContent(
+                    PATH.join(
+                        currentDirectory(),
+                        CONFIG_ROOT_DIRECTORY,
+                        CONFIG_FILE
+                    ),
+                    data
+                );
+    }
+    catch (e) {
+        console.log('error ', e);
+    }
 
-function pull() {
-    return getContent(false);
+    return null;
 }
 
 module.exports = {
+    findCwd: findChangeDirectory,
+    restoreCwd: restoreDirectory,
+    cwd: currentDirectory,
     has: hasConfigFile,
-    getContent: getContent,
-    createContent: createContent,
-    push: push,
-    pull: pull
+    push: pushContent,
+    pull: pullContent
 };

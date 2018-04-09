@@ -19,7 +19,7 @@ function runCommand(name) {
         return Pwomise.reject(new Error('Invalid runner [name] parameter.'));
     }
 
-    process = PROCESSES.push(name);
+    process = PROCESSES.run(name);
 
     return Pwomise.resolve(process);
 }

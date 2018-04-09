@@ -1,8 +1,8 @@
 'use strict';
 
 
-var commando = require('../index');
+var jforge = require('../../lib');
 var initialize = require('./initialize');
 
-commando.register('init')
+jforge.register('init')
     .runner(initialize);

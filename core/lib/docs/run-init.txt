@@ -1,0 +1,6 @@
+
+
+Not initialized. Please run the command to initialize:
+
+    jforge init
+
