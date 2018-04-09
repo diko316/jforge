@@ -3,13 +3,13 @@ version: '2'
 services:
   app:
     build: .
-    image: commando-app
-    container_name: "commando-app"
+    image: jforge-app
+    container_name: "jforge-app"
     volumes:
      - .:/opt/app-source:ro
     networks:
-     - commando-net
+     - jforge-net
 
 networks:
-  commando-net:
+  jforge-net:
       driver: bridge

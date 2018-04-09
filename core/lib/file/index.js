@@ -14,6 +14,7 @@ module.exports = {
     restoreCwd: PATH.restoreCwd,
     mkdirp: DIRECTORY.mkdirp,
     getFileContent: CONTENT.getContent,
-    showFileContent: CONTENT.showContent
+    showFileContent: CONTENT.showContent,
+    writeFileContent: CONTENT.writeContent
 };
 

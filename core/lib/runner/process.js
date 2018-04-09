@@ -41,19 +41,17 @@ OBJECT.extend(Collection, {
         return this.add(name, null);
     },
 
-    push: function (name) {
-        var process = this.resolve(name);
+    afterRunning: function () {
 
-        return process;
     },
 
+    push: function (name) {
+        var pending = this.pendingJobs;
+        var length = pending.length;
+        var process = this.resolve(name);
 
-    run: function () {
-        if (!this.running) {
-            this.running = true;
-        }
-
-        return this;
+        console.log('running ', name);
+        return process;
     }
 });
 

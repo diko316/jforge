@@ -1,7 +1,6 @@
 'use strict';
 
 var LIBCORE = require('libcore');
-var Base = require('./base');
 
 var REGISTRY = LIBCORE.createRegistry();
 var REGISTRARS = LIBCORE.createRegistry();

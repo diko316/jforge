@@ -9,7 +9,8 @@ var command;
 
 
 require('./lib/jforge-init');
-require('./lib/jforge-config');
+require('./lib/jforge-provide');
+require('./lib/jforge-help');
 
 
 command = RUNNER.extractCliOptions();
@@ -25,7 +26,7 @@ if (command) {
         console.log('command ', command);
 
         // run config
-        RUNNER.runCommand('config')
+        RUNNER.runCommand('provide')
 
             .then(function () {
                 return RUNNER.runCommand(command);
