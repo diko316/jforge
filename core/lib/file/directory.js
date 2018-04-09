@@ -1,18 +1,15 @@
 'use strict';
 
 var FS = require('fs');
-var PATH = require('path');
 var EXIST = require('./exist');
 var FILE_PATH = require('./path');
 
 
 function mkdirp(fullPath) {
     var FILE = FS;
-    var path = PATH;
     var filePath = FILE_PATH;
-    var is = EXIST.is;
     var exist = EXIST.exist;
-    var list, c, length, createList, createLength, item, dir, lastStat, umode;
+    var list, c, length, createList, createLength, item, lastStat, umode;
 
 
     fullPath = filePath.fullpath(fullPath);

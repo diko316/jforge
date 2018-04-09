@@ -4,9 +4,8 @@ var LIBCORE = require('libcore');
 var FILE = require('./file');
 var PATH = require('path');
 var object = LIBCORE.object;
-var clone = LIBCORE.clone;
 var string = LIBCORE.string;
-var array = LIBCORE.array;
+
 
 var REGISTRY = LIBCORE.createRegistry();
 var GENERATED = false;
@@ -20,7 +19,7 @@ function fromFile() {
 
 function generate() {
     var registry = REGISTRY;
-    var current, proposed;
+    var current;
 
     registry.set(fromFile());
 

@@ -29,7 +29,9 @@ function getFileContent(path) {
                                             flag: 'r'
                                         });
         }
-        catch (e) {}
+        catch (e) {
+            // do nothing from here
+        }
     }
 
     return null;
@@ -38,7 +40,7 @@ function getFileContent(path) {
 function writeFileContent(path, data) {
     var exist = EXIST;
     var mkdirp = DIRECTORY.mkdirp;
-    var stat, directory;
+    var directory;
 
     if (string(data)) {
         path = PATH.fullpath(path);

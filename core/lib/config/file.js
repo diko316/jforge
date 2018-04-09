@@ -60,8 +60,6 @@ function currentDirectory(directory) {
 }
 
 function hasConfigFile() {
-    var is = FILE.is;
-
     // inspect if has config file in current directory
     var fullPath = PATH.join(
                             currentDirectory(),
@@ -83,7 +81,9 @@ function pullContent() {
             try {
                 return JSON.parse(content);
             }
-            catch (e) {}
+            catch (e) {
+                // do nothing
+            }
         }
     }
 

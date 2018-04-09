@@ -10,7 +10,7 @@ function create(command, collection) {
     return new Process(command, collection);
 }
 
-function Process(command, collection) {
+function Process(command) {
     var worker = WORKER;
     var handlers = worker.get(command);
 

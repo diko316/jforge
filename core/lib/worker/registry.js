@@ -4,12 +4,10 @@ var LIBCORE = require('libcore');
 
 var REGISTRY = LIBCORE.createRegistry();
 var REGISTRARS = LIBCORE.createRegistry();
-var LIST = [];
 var method = LIBCORE.method;
 var array = LIBCORE.array;
 var string = LIBCORE.string;
-var PRE_RUNNER_RE = /^pre.+$/;
-var POST_RUNNER_RE = /^post.+$/;
+var object = LIBCORE.object;
 var arraySlice = Array.prototype.slice;
 
 

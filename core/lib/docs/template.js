@@ -7,7 +7,7 @@ var number = LIBCORE.number;
 
 var FUN = Function;
 var EVALUATORS = LIBCORE.createRegistry();
-var TAG_RE = /\{\{([a-z0-9\[\]_\-\"\' \t\r\n]*)\}\}/gi;
+var TAG_RE = /\{\{([a-z0-9[\]_\-"' \t\r\n]*)\}\}/gi;
 var TRIM_RE = /^\s+|\s+$/g;
 
 function transform(path, params) {

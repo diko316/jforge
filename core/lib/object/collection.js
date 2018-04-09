@@ -28,11 +28,13 @@ Collection.prototype = {
         return config;
     },
 
-    onAdd: function (item, id, index) {
+    // params item, id, index
+    onAdd: function () {
 
     },
 
-    onRemove: function (item, id, index) {
+    // params item, id, index
+    onRemove: function () {
 
     },
 

@@ -7,7 +7,7 @@ var FileClass = require('../file');
 var string = LIBCORE.string;
 var FileCollection;
 
-FileCollection = OBJECT.extend(OBJECT.Collection, function (Base, Constructor) {
+FileCollection = OBJECT.extend(OBJECT.Collection, function (Base) {
 
     return {
         createItem: function (fileReference) {

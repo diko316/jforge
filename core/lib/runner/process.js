@@ -54,7 +54,6 @@ OBJECT.extend(Collection, {
     },
 
     onRunProcessHandlers: function (promise, process, list) {
-        var me = this;
         var create = createHandler;
         var length = list.length;
         var c = 0;

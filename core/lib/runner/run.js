@@ -3,7 +3,6 @@
 
 var LIBCORE = require('libcore');
 var CLI = require('../cli');
-var WORKER = require('../worker');
 
 var PROCESS = require('./process');
 var PROCESSES = new (PROCESS.ProcessCollection)();
