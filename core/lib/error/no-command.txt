@@ -1,0 +1,4 @@
+jforge requires at least a command argument.
+
+Syntax:
+    jforge [command]

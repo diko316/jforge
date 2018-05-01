@@ -1,36 +1,33 @@
-#!/usr/bin/env node
-
 'use strict';
 
-var LIB = require('libcore');
 var PATH = require('path');
+var CONFIG = require('./config-file');
 var FILE = require('../file');
-var CONFIG_DIR = '.jforge';
-var CONFIG_FILE = 'config.yml';
+var RUNNER_DIR = CONFIG.CONFIG_DIR;
+var RUNNER_FILE = 'run.js';
 
-function configFile(root) {
+function hasFile(root) {
+    return FILE.isFile(runnerFile(root), 'r');
+}
+
+function runnerFile(root) {
     if (!LIB.string(root)) {
         root = process.cwd();
     }
-    return PATH.join(root, CONFIG_DIR, CONFIG_FILE);
-}
-
-
-function hasFile(root) {
-    return FILE.isFile(configFile(root), 'r');
+    return PATH.join(root, RUNNER_DIR, RUNNER_FILE);
 }
 
 function resolve() {
     var isFile = FILE.isFile;
     var path = PATH;
-    var getConfig = configFile;
-    var flag = 'rw';
+    var getRunner = runnerFile;
+    var flag = 'r';
     var before = null;
     var root = process.cwd();
-    var current = getConfig(root);
+    var current = getRunner(root);
     
 
-    for (; current !== before; current = getConfig(root)) {
+    for (; current !== before; current = getRunner(root)) {
         if (isFile(current, flag)) {
             return current;
         }
@@ -42,11 +39,10 @@ function resolve() {
     return null;
 }
 
-
 module.exports = {
-    CONFIG_DIR: CONFIG_DIR,
-    CONFIG_FILE: CONFIG_FILE,
+    RUNNER_DIR: RUNNER_DIR,
+    RUNNER_FILE: RUNNER_FILE,
     hasFile: hasFile,
-    location: configFile,
+    location: runnerFile,
     resolve: resolve
 };

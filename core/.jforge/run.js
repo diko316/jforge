@@ -10,5 +10,3 @@ function fileExist() {
     
 }
 
-
-console.log('root', rootDirectory());

@@ -1,0 +1,5 @@
+Current directory is not yet configured
+
+Please run:
+
+    jforge init
