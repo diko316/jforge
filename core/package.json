@@ -39,6 +39,7 @@
     "js-yaml": "^3.11.0",
     "libcore": "^0.3.8",
     "jforge": "file:.",
-    "jforge-help": "file:./task/help"
+    "jforge-help": "file:./task/help",
+    "jforge-init": "file:./task/init"
   }
 }

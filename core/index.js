@@ -4,9 +4,25 @@ var file = require('./lib/file');
 var cli = require('./lib/cli');
 var error = require('./lib/error');
 
-module.exports = {
-    prompt: cli.prompt,
-    readFile: file.readFile,
+var config = require('./lib/config');
+var runner = require('./lib/runner');
 
-    logError: error.logError
+
+module.exports = {
+    configDirectory: config.directory,
+    configFile: config.file,
+
+    runnerFile: runner.file,
+
+    prompt: cli.prompt,
+
+    mkdirp: file.mkdirp,
+    readFile: file.readFile,
+    writeFile: file.writeFile,
+
+    isFile: file.isFile,
+    isDirectory: file.isDirectory,
+
+    logError: error.logError,
+
 };

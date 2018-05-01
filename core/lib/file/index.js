@@ -3,11 +3,15 @@
 
 var access = require('./access');
 var content = require('./content');
+var directory = require('./directory');
 
 
 module.exports = {
     isFile: access.isFile,
     isDirectory: access.isDirectory,
 
-    readFile: content.read
+    mkdirp: directory.mkdirp,
+
+    readFile: content.read,
+    writeFile: content.write
 };

@@ -3,6 +3,7 @@
 'use strict';
 
 var CLI = require('./lib/cli');
+var CONFIG = require('./lib/config');
 var ERROR = require('./lib/error');
 
 /**
@@ -34,7 +35,7 @@ function inspectCommand() {
 
 
     default:
-        configFile = CLI.resolveConfig();
+        configFile = CONFIG.resolveFile();
 
         if (configFile) {
             spec.direct = false;

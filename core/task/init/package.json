@@ -1,0 +1,7 @@
+{
+    "name": "jforge-init",
+    "main": "index.js",
+    "dependencies": {
+        "jforge": "file:../.."
+    }
+}

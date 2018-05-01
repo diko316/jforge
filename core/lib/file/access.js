@@ -47,6 +47,10 @@ function access(path, flag) {
     return true;
 }
 
+function umode(path) {
+    
+}
+
 function isDirectory(path, flag) {
     var fs = FS;
     var constants = fs.constants;
