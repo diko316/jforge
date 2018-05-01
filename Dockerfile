@@ -1,9 +1,16 @@
 FROM diko316/alnode:v2.2
 
+ENV PLAYGROUND=$PROJECT_ROOT/playground
+
 ADD . $PROJECT_ROOT
 
-RUN cd core && \
-    rm -Rf node_modules package-lock.json && \
+RUN cd $PROJECT_ROOT && \
+    mkdir $PLAYGROUND && \
+    ln -s $PROJECT_ROOT/bin/dev-install.sh /usr/local/bin/dev-install && \
+    cd core && \
     npm install -y -dd
 
-ENTRYPOINT [ "bin/run.sh" ]
+ENTRYPOINT [ "/opt/app/bin/run.sh" ]
+
+WORKDIR $PLAYGROUND
+

@@ -1,12 +1,14 @@
 'use strict';
 
-var CHILD = require('./child');
-var SHELL = require('./shell');
-var OPTIONS = require('./options');
+var config = require('./config-file');
+var shell = require('./shell');
+var options = require('./options');
 
 module.exports = {
-    exec: CHILD.exec,
-    prompt: SHELL.prompt,
-    arguments: OPTIONS.create,
-    Option: OPTIONS.Option
+    configFile: config.location,
+    hasConfig: config.hasFile,
+    createConfig: config.createFile,
+    prompt: shell.prompt,
+    arguments: options.create
 };
+

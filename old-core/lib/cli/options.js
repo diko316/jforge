@@ -221,26 +221,6 @@ Option.prototype = {
         Class.call(instance, config);
 
         return instance;
-    },
-
-    beforeString: function () {
-        var before = this.argumentsBefore;
-
-        if (before) {
-            return before.join(' ');
-        }
-
-        return '';
-    },
-
-    afterString: function () {
-        var after = this.arguments;
-
-        if (after) {
-            return after.join(' ');
-        }
-
-        return '';
     }
 };
 
