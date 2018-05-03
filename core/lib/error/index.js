@@ -2,7 +2,6 @@
 
 var PATH = require('path');
 var FILE = require('../file');
-var LOG = require('./log');
 
 
 function get(name) {
@@ -10,6 +9,5 @@ function get(name) {
 }
 
 module.exports = {
-    get: get,
-    logError: LOG.logError
+    get: get
 };

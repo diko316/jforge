@@ -1,6 +1,6 @@
 FROM diko316/alnode:v2.2
 
-ENV PLAYGROUND=$PROJECT_ROOT/playground
+ENV PLAYGROUND=/opt/playground
 
 ADD . $PROJECT_ROOT
 

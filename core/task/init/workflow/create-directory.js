@@ -13,7 +13,7 @@ function createDirectory() {
     }
     
     if (!jforge.isDirectory(dir, 'rw')) {
-        jforge.logError('Unable to create directory ' + dir);
+        console.error('Unable to create directory ' + dir);
 
         return Promise.reject(new Error('Unable to create directory ' + dir));
     }

@@ -6,7 +6,7 @@ var helpFile = path.join(__dirname, 'help.txt');
 
 
 function callback() {
-    jforge.logError(jforge.readFile(helpFile));
+    console.error(jforge.readFile(helpFile));
 }
 
 

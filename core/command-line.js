@@ -6,6 +6,9 @@ var CLI = require('./lib/cli');
 var CONFIG = require('./lib/config');
 var ERROR = require('./lib/error');
 
+// console.log('!!try');
+// console.log(require.resolve('moment'));
+
 /**
  *  Step 1 - Inspect command
  */
@@ -64,7 +67,7 @@ function runCommand(spec) {
     // show Error Message
     if (errorMessage) {
         promise = promise.then(function () {
-                        ERROR.logError(errorMessage);
+                        console.error(errorMessage);
                         return spec;
                     });
     }
@@ -106,5 +109,6 @@ function runCommand(spec) {
 inspectCommand()
     .then(runCommand)
     .catch(function (error) {
-        ERROR.logError(error, 1);
+        console.error(error);
+        process.exit(1);
     });

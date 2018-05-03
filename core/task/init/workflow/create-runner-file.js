@@ -21,7 +21,7 @@ function createRunnerFile() {
                 );
 
         if (!result) {
-            jforge.logError('Unable to write to runner file ' + file);
+            console.error('Unable to write to runner file ' + file);
 
             return Promise.reject(
                         new Error('Unable to write to runner file ' + file)

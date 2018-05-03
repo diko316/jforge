@@ -5,7 +5,6 @@ var FS = require('fs');
 var PATH = require('path');
 var ACCESS = require('./access');
 var DIRECTORY = require('./directory');
-var ERROR = require('../error');
 
 var string = LIB.string;
 
@@ -18,7 +17,7 @@ function read(path) {
             });
         }
         catch (e) {
-            ERROR.logError(e);
+            console.error(e);
         }
     }
 
@@ -53,7 +52,7 @@ function write(path, data) {
                 return path;
             }
             catch (e) {
-                ERROR.logError(e);
+                console.error(e);
             }
         }
         

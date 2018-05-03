@@ -8,7 +8,7 @@ function createConfigFile() {
     var file = config.configFile;
 
     if (!jforge.isFile(file, 'rw') && !jforge.writeFile(file, '')) {
-        jforge.logError('Unable to write to config file ' + file);
+        console.error('Unable to write to config file ' + file);
 
         return Promise.reject(
                     new Error('Unable to write to config file ' + file)

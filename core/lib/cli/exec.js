@@ -3,7 +3,6 @@
 var PATH = require('path');
 var CONFIG = require('../config');
 var RUNNER = require('../runner');
-var ERROR = require('../error');
 
 function directExecCommand(command, options) {
     var entry = 'jforge-' + command;
@@ -14,7 +13,6 @@ function directExecCommand(command, options) {
     }
     catch (e) {
         console.error(e);
-        ERROR.logError('Task Error: ' + entry + ' not found.');
         return Promise.reject(e);
     }
 
@@ -22,7 +20,7 @@ function directExecCommand(command, options) {
         return Promise.resolve(callback(options));
     }
     catch (e) {
-        ERROR.logError('Task Error: ' + entry + ' runtime is erroneous.');
+        console.error('Task Error: ' + entry + ' runtime is erroneous.');
         return Promise.reject(e);
     }
 }
