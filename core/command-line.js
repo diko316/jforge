@@ -106,9 +106,17 @@ function runCommand(spec) {
     return promise;
 }
 
-inspectCommand()
-    .then(runCommand)
-    .catch(function (error) {
-        console.error(error);
-        process.exit(1);
-    });
+// inspectCommand()
+//     .then(runCommand)
+//     .catch(function (error) {
+//         console.error(error);
+//         process.exit(1);
+//     });
+
+
+var pack = require('./lib/task/package');
+
+
+console.log('has pacakge: ', pack.hasPackage('moment'));
+
+pack.installPackage('moment');

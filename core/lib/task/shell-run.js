@@ -6,30 +6,36 @@ var LIB = require('libcore');
 var createOptions = require('./options');
 var postProcess = require('./post-process');
 var string = LIB.string;
+var object = LIB.object;
 
 function run(name, params, options) {
     var spec = createOptions(name, params, options);
-
-    var childProcess;
+    var childProcess, runnerOptions;
 
     if (!spec) {
         if (!string(name)) {
-            return Promise.reject(new Error('Invalid script module [name] parameter.'));
+            return Promise.reject(new Error('Invalid executable file [name] parameter.'));
         }
 
         return Promise.reject(new Error('Invalid arguments in running JS script.'));
     }
 
-    // fork the process
+    runnerOptions = spec[2];
+    options = spec[4];
+
+    if (!object(options.env)) {
+        runnerOptions.env = {};
+    }
+
     try {
-        childProcess = CHILD_PROCESS.fork(
+        childProcess = CHILD_PROCESS.spawn(
             spec[0],
             spec[1],
-            spec[2]
+            runnerOptions
         );
     }
-    catch (e) {
-        return Promise.reject(e);
+    catch (error) {
+        return Promise.reject(error);
     }
 
     return postProcess(childProcess, spec);
