@@ -5,14 +5,12 @@ var cli = require('./lib/cli');
 var error = require('./lib/error');
 
 var config = require('./lib/config');
-var runner = require('./lib/runner');
+
 
 
 module.exports = {
     configDirectory: config.directory,
     configFile: config.file,
-
-    runnerFile: runner.file,
 
     prompt: cli.prompt,
 

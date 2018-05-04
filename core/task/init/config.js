@@ -6,6 +6,5 @@ var cwd = process.cwd();
 module.exports = {
     workingDirectory: cwd,
     rootDirectory: jforge.configDirectory(cwd),
-    configFile: jforge.configFile(cwd),
-    runnerFile: jforge.runnerFile(cwd)
+    configFile: jforge.configFile(cwd)
 };

@@ -2,7 +2,7 @@
 
 var PATH = require('path');
 var CONFIG = require('../config');
-var RUNNER = require('../runner');
+
 
 function directExecCommand(command, options) {
     var entry = 'jforge-' + command;
