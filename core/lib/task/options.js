@@ -69,6 +69,12 @@ function createOptions(name, params, options) {
         item = options.onError;
         handlers.onError = isFunction(item) ? item : empty;
 
+        item = options.onStdOut;
+        handlers.onStdOut = isFunction(item) ? item : empty;
+
+        item = options.onStdError;
+        handlers.onStdError = isFunction(item) ? item : empty;
+
     }
 
     return [name, params, runOptions, handlers, options];

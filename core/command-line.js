@@ -116,7 +116,4 @@ function runCommand(spec) {
 
 var pack = require('./lib/task/package');
 
-
-console.log('has pacakge: ', pack.hasPackage('moment'));
-
 pack.installPackage('moment');
