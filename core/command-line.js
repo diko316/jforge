@@ -114,6 +114,6 @@ function runCommand(spec) {
 //     });
 
 
-var pack = require('./lib/task/package');
+var pack = require('./lib/package');
 
-pack.installPackage('moment');
+pack.install('moment', true);

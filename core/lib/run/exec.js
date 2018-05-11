@@ -8,16 +8,21 @@ var postProcess = require('./post-process');
 var string = LIB.string;
 var object = LIB.object;
 
-function run(name, params, options) {
+function run(method, name, params, options) {
+    var nodeProcess = CHILD_PROCESS;
     var spec = createOptions(name, params, options);
-    var childProcess, runnerOptions;
+    var childProcess, runner, runnerOptions;
 
     if (!spec) {
         if (!string(name)) {
-            return Promise.reject(new Error('Invalid executable file [name] parameter.'));
+            return Promise.reject(
+                    new Error('Invalid executable [name] parameter.')
+                );
         }
 
-        return Promise.reject(new Error('Invalid arguments in running JS script.'));
+        return Promise.reject(
+                    new Error('Invalid arguments for runner executable.')
+                );
     }
 
     runnerOptions = spec[2];
@@ -27,8 +32,18 @@ function run(name, params, options) {
         runnerOptions.env = {};
     }
 
+    switch (method) {
+    case 'script':
+    case 'fork':
+        runner = nodeProcess.fork;
+        break;
+
+    default:
+        runner = nodeProcess.spawn;
+    }
+
     try {
-        childProcess = CHILD_PROCESS.spawn(
+        childProcess = runner(
             spec[0],
             spec[1],
             runnerOptions
