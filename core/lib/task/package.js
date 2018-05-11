@@ -64,16 +64,11 @@ function installPackage(name) {
     if (name) {
         return shellRun(
                 'npm',
-                ['link', '-y', name],
+                ['link', '-y', '-dd', name],
                 {
                     cwd: PATH.dirname(require.main.filename),
-                    onStdOut: function (data) {
-                        process.stderr.write(data.toString());
-                    },
-
-                    onStdError: function (data) {
-                        process.stderr.write(data.toString());
-                    }
+                    stdout: 'inherit',
+                    stderr: 'inherit'
                 }
             )
             .then(function () {
