@@ -13,7 +13,12 @@ var ERROR = require('./lib/error');
  *  Step 1 - Inspect command
  */
 function inspectCommand() {
-    var options = CLI.arguments({ before: 1 });
+    var options = CLI.arguments({
+                        before: 1,
+                        options: {
+                            '-test': 1
+                        }
+                    });
     var command = options.beforeString();
     var spec = {
             errorCode: 0,
@@ -74,27 +79,30 @@ function runCommand(spec) {
 
     // run command
     if (command) {
+        console.log('spec: ', spec);
+        CLI.run(command, options);
+
         // for direct command
-        if (spec.direct) {
-            promise = promise
-                        .then(function () {
-                            return CLI.directExecCommand(
-                                        command,
-                                        options
-                                    );
-                        })
-                        .then(returnSpec);
-        }
-        else {
-            promise = promise
-                        .then(function () {
-                            return CLI.execCommand(
-                                        command,
-                                        options
-                                    );
-                        })
-                        .then(returnSpec);
-        }
+        // if (spec.direct) {
+        //     promise = promise
+        //                 .then(function () {
+        //                     return CLI.directExecCommand(
+        //                                 command,
+        //                                 options
+        //                             );
+        //                 })
+        //                 .then(returnSpec);
+        // }
+        // else {
+        //     promise = promise
+        //                 .then(function () {
+        //                     return CLI.execCommand(
+        //                                 command,
+        //                                 options
+        //                             );
+        //                 })
+        //                 .then(returnSpec);
+        // }
     }
 
     if (errorCode) {
@@ -106,14 +114,28 @@ function runCommand(spec) {
     return promise;
 }
 
-// inspectCommand()
-//     .then(runCommand)
-//     .catch(function (error) {
-//         console.error(error);
-//         process.exit(1);
+inspectCommand()
+    .then(runCommand)
+    .catch(function (error) {
+        console.error(error);
+        process.exit(1);
+    });
+
+
+// var pack = require('./lib/package');
+
+// pack.install('moment', true);
+
+
+// var RUN = require('./lib/run');
+// var PATH = require('path');
+
+// RUN.scriptRun(
+//     PATH.join(__dirname, 'test-child.js'),
+//     [],
+//     {
+//         message: function (message) {
+//             console.log('message:');
+//             console.log(message);
+//         }
 //     });
-
-
-var pack = require('./lib/package');
-
-pack.install('moment', true);

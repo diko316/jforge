@@ -27,12 +27,11 @@ function install(name, link) {
                         'link' : 'install',
                     '-y',
                     '-dd',
+                    '--color=always',
                     name
                 ],
                 {
-                    cwd: PATH.dirname(require.main.filename),
-                    stdout: 'inherit',
-                    stderr: 'inherit'
+                    cwd: PATH.dirname(require.main.filename)
                 }
             )
             .then(function () {
@@ -50,5 +49,30 @@ function install(name, link) {
     return Promise.reject(new Error('Invalid package [name] to install.'));
 }
 
-module.exports = install;
+function ensure(name) {
+    var registry = REGISTRY;
+    var parsed = registry.parse(name);
+    var packageName;
+
+    if (parsed) {
+        packageName = parsed[0];
+        name = parsed.join('@');
+
+        if (!registry.resolve(name)) {
+            return install(name)
+                    .then(function () {
+                        return packageName;
+                    });
+        }
+
+        return Promise.resolve(packageName);
+    }
+
+    return Promise.reject(new Error('Invalid package [name] parameter.'));
+}
+
+module.exports = {
+    install: install,
+    ensure: ensure
+};
 

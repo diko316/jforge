@@ -199,7 +199,6 @@ function Option(config) {
     // arguments
     params = findParams(this, paramAfter, true);
     this.arguments = params === false ? null : params;
-
 }
 
 Option.prototype = {
@@ -241,6 +240,10 @@ Option.prototype = {
         }
 
         return '';
+    },
+
+    getRemaining: function () {
+        return this.parameters.slice(this.processed);
     }
 };
 

@@ -6,5 +6,6 @@ var install = require('./install');
 module.exports = {
     parse: registry.parse,
     resolve: registry.resolve,
-    install: install
+    install: install.install,
+    ensure: install.ensure
 };

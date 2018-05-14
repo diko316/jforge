@@ -1,17 +1,17 @@
 'use strict';
 
 
-var shell = require('./shell');
+var prompt = require('./prompt');
 var options = require('./options');
-var exec = require('./exec');
+var run = require('./run');
+var events = require('./events');
 
 
 module.exports = {
-
-    prompt: shell.prompt,
-
+    prompt: prompt,
     arguments: options.create,
-
-    directExecCommand: exec.directExecCommand
+    run: run,
+    on: events.on,
+    off: events.off
 };
 

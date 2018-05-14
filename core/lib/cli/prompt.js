@@ -33,6 +33,4 @@ function prompt(message) {
 
 
 
-module.exports = {
-    prompt: prompt
-};
+module.exports = prompt;

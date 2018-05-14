@@ -18,6 +18,10 @@ var EXIT_EVENTS = [
         'exit',
         'disconnect'
     ];
+var CLEANUP_EVENTS = [
+        'message',
+        'error'
+    ];
 
 function register(child, id) {
     var list = PROCESSES;
@@ -94,7 +98,7 @@ function unregister(id) {
 function get(id) {
     var list = PROCESSES;
 
-    if (!contains(list, id)) {
+    if (contains(list, id)) {
         return list[id][1];
     }
 
@@ -140,13 +144,20 @@ function registerExitEvents(child, id) {
 function unregisterExitEvents(child, id) {
     var names = EXIT_EVENTS;
     var definition = PROCESSES[id];
-    var handler = definition[2];
 
     var length = names.length;
     var c = 0;
 
     for (; length--; c++) {
-        child.removeListener(names[c], handler);
+        child.removeAllListeners(names[c]);
+    }
+
+    // unregister other listeners
+    names = CLEANUP_EVENTS;
+    length = names.length;
+    c = 0;
+    for (; length--; c++) {
+        child.removeAllListeners(names[c]);
     }
 }
 
@@ -157,6 +168,8 @@ function createOnChildExit(child, id) {
         unregister(id);
         childProcess = null;
     }
+
+    return onExit;
 }
 
 module.exports = {

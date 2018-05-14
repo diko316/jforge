@@ -7,6 +7,7 @@ var array = LIB.array;
 var number = LIB.number;
 var assign = LIB.assign;
 var method = LIB.method;
+var clone = LIB.clone;
 var contains = LIB.contains;
 
 var DEFAULT_IO = 'pipe';
@@ -124,7 +125,6 @@ function createOptions(name, params, options) {
     handlers = {};
 
     if (isObject(options)) {
-
         item = options.config;
         if (isObject(item)) {
             runOptions = assign(runOptions, item);
@@ -134,6 +134,9 @@ function createOptions(name, params, options) {
         if (isString(item)) {
             runOptions.cwd = item;
         }
+
+        item = options.thread;
+        runOptions.thread = isString(item) ? item : null;
 
         item = options.silent;
         if (item === true) {
@@ -151,29 +154,33 @@ function createOptions(name, params, options) {
         }
 
         // initialize IO
-        initializeIO(runOptions, options);
+        // initializeIO(runOptions, options);
 
-        configureIO('stdin', options.stdin, runOptions);
-        configureIO('stdout', options.stdout, runOptions);
-        configureIO('stderr', options.stderr, runOptions);
-        configureIO('channel', options.channel, runOptions);
+        // configureIO('stdin', options.stdin, runOptions);
+        // configureIO('stdout', options.stdout, runOptions);
+        // configureIO('stderr', options.stderr, runOptions);
+        // configureIO('channel', options.channel, runOptions);
 
         // initialize Event handlers
-        item = options.onExit;
+        item = options.ready;
+        handlers.onReady = isFunction(item) ? item : empty;
+
+        item = options.exit;
         handlers.onExit = isFunction(item) ? item : empty;
 
-        item = options.onMessage;
+        item = options.message;
         handlers.onMessage = isFunction(item) ? item : empty;
 
-        item = options.onError;
+        item = options.outputError;
+        handlers.onOutputError = isFunction(item) ? item : empty;
+
+        item = options.output;
+        handlers.onOutput = isFunction(item) ? item : empty;
+
+        item = options.error;
         handlers.onError = isFunction(item) ? item : empty;
 
-        item = options.onStdOut;
-        handlers.onStdOut = isFunction(item) ? item : empty;
-
-        item = options.onStdError;
-        handlers.onStdError = isFunction(item) ? item : empty;
-
+        
     }
 
     return [name, params, runOptions, handlers, options];

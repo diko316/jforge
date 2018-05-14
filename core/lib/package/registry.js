@@ -99,7 +99,6 @@ function resolve(name, refresh) {
     return false;
 }
 
-
 module.exports = {
     parse: parse,
     isRegistered: isRegistered,
