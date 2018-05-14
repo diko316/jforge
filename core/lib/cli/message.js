@@ -1,10 +1,11 @@
 'use strict';
 
 var LIB = require('libcore');
-var prompt = require('./prompt');
+var processor = require('./processor');
 
 var object = LIB.object;
 var string = LIB.string;
+var REGISTRY = LIB.createRegistry();
 
 function normalize(message) {
     var isObject = object;
@@ -31,31 +32,35 @@ function normalize(message) {
 
 function onMessage(message, child) {
     var childProcess = child;
-    var type, data, id;
-
-    message = normalize(message);
+    var type;
 
     function onEnd(answer) {
-        childProcess.send({
-                type: type,
-                eventId: id,
-                data: answer
-            },
-            function () {
-                childProcess = null;
+        return new Promise(function (resolve) {
+                childProcess.send({
+                    type: type,
+                    eventId: message.id,
+                    data: answer
+                },
+                function () {
+                    resolve(childProcess);
+                    childProcess = null;
+                })
             });
     }
 
+    message = normalize(message);
+
     if (message) {
         type = message.type;
-        data = message.data;
-        id = message.id;
-        switch (type) {
-            case 'prompt':
-                prompt(data ? data.text : '').then(onEnd);
+
+        if (processor.exists(type)) {
+            processor.resolve(type)
+                    .call(null, message.data, child)
+                    .then(onEnd);
         }
     }
 }
+
 
 module.exports = {
     handler: onMessage

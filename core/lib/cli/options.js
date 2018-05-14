@@ -168,6 +168,10 @@ function create(config, customParameters) {
     return new Class(config);
 }
 
+function isOption(option) {
+    return option instanceof Option;
+}
+
 
 function Option(config) {
     var options, paramBefore, paramAfter, params;
@@ -249,5 +253,6 @@ Option.prototype = {
 
 module.exports = {
     Option: Option,
+    isOption: isOption,
     create: create
 };

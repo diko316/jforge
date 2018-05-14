@@ -2,7 +2,9 @@
 
 var LIBCORE = require('libcore');
 var READLINE = require('readline');
+var PROCESSOR = require('./processor');
 var string = LIBCORE.string;
+var object = LIBCORE.object;
 
 function prompt(message) {
     var nodeProcess = process;
@@ -30,6 +32,23 @@ function prompt(message) {
 
     return Promise.reject(new Error("Invalid message parameter."));
 }
+
+
+function processorMessage(message) {
+    var text = message.text;
+
+    if (!string(text)) {
+        text = '';
+    }
+
+    return prompt(text);
+}
+
+// create processor
+PROCESSOR
+    .resolve('prompt')
+    .guard(object)
+    .handler(processorMessage)
 
 
 

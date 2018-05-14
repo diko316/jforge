@@ -80,7 +80,7 @@ function runCommand(spec) {
     // run command
     if (command) {
         console.log('spec: ', spec);
-        CLI.run(command, options);
+        CLI.runPackage(command, options);
 
         // for direct command
         // if (spec.direct) {
