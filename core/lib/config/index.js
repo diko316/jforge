@@ -3,6 +3,9 @@
 var directory = require('./directory');
 var file = require('./file');
 
+var use = require('./use');
+
+
 
 module.exports = {
     DIRECTORY: directory.CONFIG_DIR,
@@ -13,5 +16,7 @@ module.exports = {
     CONFIG_FILE: file.CONFIG_FILE,
     hasFile: file.hasFile,
     file: file.location,
-    resolveFile: file.resolve
+    resolveFile: file.resolve,
+
+    useDirectory: use.useDirectory
 };

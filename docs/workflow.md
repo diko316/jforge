@@ -4,13 +4,13 @@
 Create `jforge` configuration in current directory.
 
 ```shell
-commando configure
+jforge init
 ```
 1. Inspect if jforge is configured. When already configured, go to step 6.
 2. Create `.jforge` directory
-3. Create `run.js` file in `.jforge` by copying `run.js` from jforge copy.
 3. Create initial `config.yml` file inside `.jforge`
 4. Ask user for plugins to install.
+5. Install required plugins and mark them to config.yml
 
 ## Provision
 ## Run Development
