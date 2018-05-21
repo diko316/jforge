@@ -3,7 +3,7 @@
 var directory = require('./directory');
 var file = require('./file');
 
-var use = require('./use');
+var content = require('./content');
 
 
 
@@ -18,5 +18,5 @@ module.exports = {
     file: file.location,
     resolveFile: file.resolve,
 
-    useDirectory: use.useDirectory
+    useDirectory: content.useDirectory
 };
